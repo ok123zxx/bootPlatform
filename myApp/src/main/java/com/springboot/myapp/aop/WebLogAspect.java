@@ -48,11 +48,11 @@ public class WebLogAspect {
         //heaeder信息
         Enumeration<String> headerNames = request.getHeaderNames();
         if(headerNames.hasMoreElements()){
-            sb.append("HEADER:\n");
+            sb.append("HEADER ");
             while(headerNames.hasMoreElements()){
                 String key = headerNames.nextElement();
                 String header = request.getHeader(key);
-                sb.append("key{").append(key).append("},value{").append(header).append("}").append("\n");
+                sb.append(key).append(":").append(header).append(",");
             }
             printLog(sb.toString());
         }
@@ -61,11 +61,11 @@ public class WebLogAspect {
         Enumeration<String> parameterNames = request.getParameterNames();
         if(parameterNames.hasMoreElements()){
             sb.setLength(0);
-            sb.append("PARAMTER:\n");
+            sb.append("PARAMTER ");
             while (parameterNames.hasMoreElements()){
                 String name = parameterNames.nextElement();
                 String parameter = request.getParameter(name);
-                sb.append("name:{"+name+"},value:{"+parameter+"}").append("\n");
+                sb.append(name).append(":").append(parameter).append(",");
             }
             printLog(sb.toString());
         }

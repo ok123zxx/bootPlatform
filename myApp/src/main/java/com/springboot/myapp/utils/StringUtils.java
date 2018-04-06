@@ -18,10 +18,10 @@ import java.util.regex.Pattern;
  * 字符串工具类, 继承org.apache.commons.lang3.StringUtils类
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
-	
+
     private static final char SEPARATOR = '_';
     private static final String CHARSET_NAME = "UTF-8";
-    
+
     /**
      * 转换为字节数组
      * @param str
@@ -38,7 +38,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     		return null;
     	}
     }
-    
+
     /**
      * 转换为字节数组
      * @param bytes
@@ -51,7 +51,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 			return EMPTY;
 		}
     }
-    
+
     /**
      * 是否包含字符串
      * @param str 验证字符串
@@ -68,7 +68,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     	}
     	return false;
     }
-    
+
 	/**
 	 * 替换掉HTML标签方法
 	 */
@@ -82,7 +82,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		String s = m.replaceAll("");
 		return s;
 	}
-	
+
 	/**
 	 * 替换为手机识别的HTML，去掉样式及属性，保留回车。
 	 * @param html
@@ -94,7 +94,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		}
 		return html.replaceAll("<([a-z]+?)\\s+?.*?>", "<$1>");
 	}
-	
+
 	/**
 	 * 替换为手机识别的HTML，去掉样式及属性，保留回车。
 	 * @param txt
@@ -135,7 +135,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		}
 		return "";
 	}
-	
+
 	public static String abbr2(String param, int length) {
 		if (param == null) {
 			return "";
@@ -198,7 +198,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		}
 		return result.toString();
 	}
-	
+
 	/**
 	 * 转换为Double类型
 	 */
@@ -233,21 +233,21 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	public static Integer toInteger(Object val){
 		return toLong(val).intValue();
 	}
-	
+
 	/**
 	 * 获得i18n字符串
 	 */
 	public static String getMessage(String code, Object[] args) {
 		LocaleResolver localLocaleResolver = (LocaleResolver) SpringContextHolder.getBean(LocaleResolver.class);
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();  
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		Locale localLocale = localLocaleResolver.resolveLocale(request);
 		return SpringContextHolder.getApplicationContext().getMessage(code, args, localLocale);
 	}
-	
+
 	/**
 	 * 驼峰命名法工具
 	 * @return
-	 * 		toCamelCase("hello_world") == "helloWorld" 
+	 * 		toCamelCase("hello_world") == "helloWorld"
 	 * 		toCapitalizeCamelCase("hello_world") == "HelloWorld"
 	 * 		toUnderScoreCase("helloWorld") = "hello_world"
 	 */
@@ -279,7 +279,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     /**
 	 * 驼峰命名法工具
 	 * @return
-	 * 		toCamelCase("hello_world") == "helloWorld" 
+	 * 		toCamelCase("hello_world") == "helloWorld"
 	 * 		toCapitalizeCamelCase("hello_world") == "HelloWorld"
 	 * 		toUnderScoreCase("helloWorld") = "hello_world"
 	 */
@@ -290,11 +290,11 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         s = toCamelCase(s);
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
-    
+
     /**
 	 * 驼峰命名法工具
 	 * @return
-	 * 		toCamelCase("hello_world") == "helloWorld" 
+	 * 		toCamelCase("hello_world") == "helloWorld"
 	 * 		toCapitalizeCamelCase("hello_world") == "HelloWorld"
 	 * 		toUnderScoreCase("helloWorld") = "hello_world"
 	 */
@@ -328,7 +328,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 
         return sb.toString();
     }
-    
+
     /**
      * 如果不为空，则设置值
      * @param target
@@ -339,7 +339,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 			target = source;
 		}
 	}
- 
+
     /**
      * 转换为JS获取对象值，生成三目运算返回结果
      * @param objectString 对象串
@@ -357,5 +357,5 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     	result.append(val.substring(1));
     	return result.toString();
     }
-    
+
 }

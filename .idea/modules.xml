@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/bootSchedule/boot-schedule.iml" filepath="$PROJECT_DIR$/bootSchedule/boot-schedule.iml" />
       <module fileurl="file://$PROJECT_DIR$/bootPlatform.iml" filepath="$PROJECT_DIR$/bootPlatform.iml" />
       <module fileurl="file://$PROJECT_DIR$/myApp/myapp.iml" filepath="$PROJECT_DIR$/myApp/myapp.iml" />

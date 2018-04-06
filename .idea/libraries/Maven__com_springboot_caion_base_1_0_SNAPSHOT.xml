@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.springboot.caion:base:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://H:/mavenRpo/com/springboot/caion/base/1.0-SNAPSHOT/base-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://H:/mavenRpo/com/springboot/caion/base/1.0-SNAPSHOT/base-1.0-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://H:/mavenRpo/com/springboot/caion/base/1.0-SNAPSHOT/base-1.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
