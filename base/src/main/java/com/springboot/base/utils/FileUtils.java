@@ -1,4 +1,4 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;

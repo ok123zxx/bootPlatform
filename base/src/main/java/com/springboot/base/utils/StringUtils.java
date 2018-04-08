@@ -1,7 +1,7 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import com.google.common.collect.Lists;
-import com.springboot.myapp.config.SpringContextHolder;
+import com.springboot.base.context.SpringContextHolder;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

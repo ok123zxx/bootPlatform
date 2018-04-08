@@ -1,4 +1,4 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

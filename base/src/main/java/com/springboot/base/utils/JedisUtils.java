@@ -1,9 +1,9 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.springboot.myapp.config.SpringContextHolder;
+import com.springboot.base.context.SpringContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

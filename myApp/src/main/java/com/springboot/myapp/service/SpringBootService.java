@@ -1,6 +1,6 @@
 package com.springboot.myapp.service;
 
-import com.springboot.myapp.utils.LogUtils;
+import com.springboot.base.utils.LogUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 

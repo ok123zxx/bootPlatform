@@ -1,11 +1,11 @@
 package com.springboot.myapp.test;
 
 
+import com.springboot.base.context.SpringContextHolder;
+import com.springboot.base.utils.JedisUtils;
+import com.springboot.base.utils.StringUtils;
 import com.springboot.myapp.app.App;
-import com.springboot.myapp.config.SpringContextHolder;
 import com.springboot.myapp.service.SpringBootService;
-import com.springboot.myapp.utils.JedisUtils;
-import com.springboot.myapp.utils.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

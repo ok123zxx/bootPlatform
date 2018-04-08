@@ -1,11 +1,10 @@
 package com.springboot.myapp.web;
 
+import com.springboot.base.utils.JedisUtils;
+import com.springboot.base.utils.Underline2Camel;
 import com.springboot.myapp.exception.BaseException;
 import com.springboot.myapp.service.SpringBootService;
 import com.springboot.myapp.service.StoreService;
-import com.springboot.myapp.utils.CommonUtils;
-import com.springboot.myapp.utils.JedisUtils;
-import com.springboot.myapp.utils.Underline2Camel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

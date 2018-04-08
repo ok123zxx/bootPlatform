@@ -1,4 +1,4 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

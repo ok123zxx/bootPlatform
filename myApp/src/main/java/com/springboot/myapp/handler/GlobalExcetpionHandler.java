@@ -1,5 +1,6 @@
 package com.springboot.myapp.handler;
 
+import com.springboot.base.utils.LogUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,14 +17,21 @@ public class GlobalExcetpionHandler {
 	@ResponseBody
 	@ExceptionHandler(RuntimeException.class)//运行时异常
 	public Object runTimeexceptionHandler(RuntimeException e) {
-		e.printStackTrace();
+		LogUtils.errorPrint("",e);
 		return "runTime error handler";
 	}
 
 	@ResponseBody
 	@ExceptionHandler(BaseException.class)//业务异常
 	public Object baseExceptionHandler(BaseException e) {
-        e.printStackTrace();
+		LogUtils.errorPrint("",e);
 		return "business error";
 	}
+
+    @ResponseBody
+    @ExceptionHandler(Throwable.class)
+    public Object runTimeexceptionHandler(Throwable e) {
+        LogUtils.errorPrint("",e);
+        return "Throwable handler";
+    }
 }

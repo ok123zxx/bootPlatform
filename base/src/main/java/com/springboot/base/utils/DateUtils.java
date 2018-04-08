@@ -1,4 +1,4 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 

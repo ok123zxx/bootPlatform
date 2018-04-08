@@ -1,4 +1,4 @@
-package com.springboot.myapp.config;
+package com.springboot.base.context;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;

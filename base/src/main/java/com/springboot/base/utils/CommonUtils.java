@@ -1,4 +1,4 @@
-package com.springboot.myapp.utils;
+package com.springboot.base.utils;
 
 /*
  * 与项目相关的常用Util方法
