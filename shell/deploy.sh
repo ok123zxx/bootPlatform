@@ -9,6 +9,8 @@ do
     echo "kill result: $?"
 done
 cd bootSchedule/target
-nohup java -jar boot* >> boot.log 2>&1 &
+nohup java -jar boot-schedule-1.0-SNAPSHOT.jar >> boot.log 2>&1 &
+cd ..
+cd ..
 cd myApp/target
-nohup java -jar myapp* >> app.log 2>&1 &
+nohup java -jar myapp-0.0.1-SNAPSHOT.jar >> app.log 2>&1 &
