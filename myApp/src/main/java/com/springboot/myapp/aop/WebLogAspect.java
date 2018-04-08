@@ -1,5 +1,7 @@
 package com.springboot.myapp.aop;
 
+import com.springboot.base.constants.RedisConstants;
+import com.springboot.base.utils.JedisUtils;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -27,7 +29,8 @@ public class WebLogAspect {
     public void webLog(){}
 
     public void printLog(String str){
-        logger.info(str);
+//        logger.info(str);
+        JedisUtils.lpush(RedisConstants.ASPECT_LOG_QUEUE.value,str+"\n");
     }
 
     @Before("webLog()")

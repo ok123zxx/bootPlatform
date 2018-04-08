@@ -24,8 +24,12 @@ spring:
 
 #服务器相关
 server:
-  port: 80
+  port: 8080
 
 #日志相关
 logging:
   config: classpath:log4j.properties
+
+#自定义属性
+apsect-log:
+  filePath: /home/springboot/logs/aspectLog

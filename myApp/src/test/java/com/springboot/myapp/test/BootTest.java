@@ -1,6 +1,7 @@
 package com.springboot.myapp.test;
 
 
+import com.springboot.base.constants.RedisConstants;
 import com.springboot.base.context.SpringContextHolder;
 import com.springboot.base.utils.JedisUtils;
 import com.springboot.base.utils.StringUtils;
@@ -29,12 +30,7 @@ public class BootTest {
 
     @Test
     public void test() throws Exception{
-        JedisUtils.set("caion","ok213",100000);
-        String caion = JedisUtils.get("caion");
-        System.out.println(caion);
-
-        JedisPool jedisPool = SpringContextHolder.getBean(JedisPool.class);
-        System.out.println(jedisPool);
+        JedisUtils.lpush(RedisConstants.ASPECT_LOG_QUEUE.value,"a","b","c");
     }
 
     public static void main(String[] args) {
