@@ -22,4 +22,19 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--注意：多模块项目仅仅需要在启动类所在的模块添加打包插件即可！！不要在父类添加打包插件，因为那样会导致全部子模块都使用spring-boot-maven-plugin的方式来打包（例如BOOT-INF/com/hehe/xx），而mm-web模块引入mm-xx 的jar 需要的是裸露的类文件，即目录格式为（/com/hehe/xx）。-->
+                <!--只需在myapp的pom.xml 添加打包插件（spring-boot-maven-plugin）:-->
+                <!--该插件主要用途：构建可执行的JAR -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.springboot.bootSchedule.app.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

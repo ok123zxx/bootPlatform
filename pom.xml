@@ -17,6 +17,6 @@
     <modules>
         <module>base</module>
         <module>myApp</module>
-        <!--<module>bootSchedule</module>/-->
+        <module>bootSchedule</module>
     </modules>
 </project>
