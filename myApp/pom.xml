@@ -32,6 +32,13 @@
 				<configuration>
 					<mainClass>com.springboot.myapp.app.App</mainClass>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
