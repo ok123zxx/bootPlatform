@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/springboot/bootPlatform/shell
 cd ..
 git pull
 mvn clean install
@@ -20,6 +21,6 @@ done
 
 
 
-nohup java -jar bootSchedule/target/boot-schedule-1.0-SNAPSHOT.jar >> boot.log 2>&1 &
+nohup java -jar bootSchedule/target/boot-schedule-1.0-SNAPSHOT.jar >> /dev/null 2>&1 &
 
-nohup java -jar myApp/target/myapp-0.0.1-SNAPSHOT.jar >> app.log 2>&1 &
+nohup java -jar myApp/target/myapp-0.0.1-SNAPSHOT.jar >> /dev/null 2>&1 &
