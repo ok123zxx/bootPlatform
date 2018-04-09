@@ -24,7 +24,7 @@ spring:
 
 #服务器相关
 server:
-  port: 8080
+  port: 8089
 
 #日志相关
 logging:

@@ -15,4 +15,9 @@ public class IndexController {
 	public String index(ModelMap map, HttpServletRequest request) {
 		return "translate";
 	}
+
+	@RequestMapping(value = "/upload")
+	public String upload(ModelMap map, HttpServletRequest request){
+		return "upload";
+	}
 }

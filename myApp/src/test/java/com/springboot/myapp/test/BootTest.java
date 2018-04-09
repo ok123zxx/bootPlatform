@@ -6,6 +6,7 @@ import com.springboot.base.context.SpringContextHolder;
 import com.springboot.base.utils.JedisUtils;
 import com.springboot.base.utils.StringUtils;
 import com.springboot.myapp.app.App;
+import com.springboot.myapp.config.MyConfig;
 import com.springboot.myapp.service.SpringBootService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +31,8 @@ public class BootTest {
 
     @Test
     public void test() throws Exception{
-        JedisUtils.lpush(RedisConstants.ASPECT_LOG_QUEUE.value,"a","b","c");
+        MyConfig bean = SpringContextHolder.getBean(MyConfig.class);
+        System.out.println(bean);
     }
 
     public static void main(String[] args) {
