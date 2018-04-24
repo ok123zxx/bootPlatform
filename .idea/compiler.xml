@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="base" />
+        <module name="boot-redis" />
         <module name="boot-schedule" />
         <module name="myapp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base" target="1.8" />
+      <module name="boot-redis" target="1.8" />
       <module name="boot-schedule" target="1.8" />
       <module name="bootPlatform" target="1.8" />
       <module name="myapp" target="1.8" />

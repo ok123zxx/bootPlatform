@@ -2,6 +2,7 @@ package com.springboot.myapp.aop;
 
 import com.springboot.base.constants.RedisConstants;
 import com.springboot.base.utils.JedisUtils;
+import com.springboot.base.utils.LogUtils;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -29,8 +31,15 @@ public class WebLogAspect {
     public void webLog(){}
 
     public void printLog(String str){
-//        logger.info(str);
-        JedisUtils.lpush(RedisConstants.ASPECT_LOG_QUEUE.value,str+"\n");
+        Jedis jedis = null;
+        try {
+            jedis = JedisUtils.getResource();
+            Long lpush = jedis.lpush(RedisConstants.ASPECT_LOG_QUEUE.value,str+"\n");
+        }catch (Exception e) {
+            LogUtils.warnPrint(str);
+        }finally {
+            JedisUtils.returnResource(jedis);
+        }
     }
 
     @Before("webLog()")
