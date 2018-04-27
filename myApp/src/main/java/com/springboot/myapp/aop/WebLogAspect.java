@@ -3,6 +3,7 @@ package com.springboot.myapp.aop;
 import com.springboot.base.constants.RedisConstants;
 import com.springboot.base.utils.JedisUtils;
 import com.springboot.base.utils.LogUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -43,7 +44,7 @@ public class WebLogAspect {
     }
 
     @Before("webLog()")
-    public void doBeforeWebLog() throws Throwable{
+    public void doBeforeWebLog(JoinPoint joinPoint) throws Throwable{
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if(attributes == null){
             return ;
