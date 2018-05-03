@@ -18,7 +18,8 @@
         <module>base</module>
         <module>myApp</module>
         <module>bootSchedule</module>
-        <module>boot-redis</module>
+        <module>eureka-app</module>
+        <!--<module>boot-redis</module>-->
     </modules>
 
 </project>

@@ -9,6 +9,9 @@
         <module name="base" />
         <module name="boot-redis" />
         <module name="boot-schedule" />
+        <module name="euraka" />
+        <module name="eureka" />
+        <module name="eureka-app" />
         <module name="myapp" />
       </profile>
     </annotationProcessing>
@@ -17,6 +20,9 @@
       <module name="boot-redis" target="1.8" />
       <module name="boot-schedule" target="1.8" />
       <module name="bootPlatform" target="1.8" />
+      <module name="euraka" target="1.8" />
+      <module name="eureka" target="1.8" />
+      <module name="eureka-app" target="1.8" />
       <module name="myapp" target="1.8" />
     </bytecodeTargetLevel>
   </component>
