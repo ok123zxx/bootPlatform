@@ -32,10 +32,12 @@ spring:
 server:
   port: 80
 
-#注册中心
-
-
-
 #日志相关
 logging:
   config: classpath:log4j.properties
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
