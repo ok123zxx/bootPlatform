@@ -13,8 +13,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @EnableEurekaServer
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 public class EurekaApp {
-    //java -jar .\eureka-app-1.0-SNAPSHOT.jar --server.port=8001
-    //java -jar .\eureka-app-1.0-SNAPSHOT.jar --server.port=8000
     public static void main(String[] args) {
         SpringApplication.run(EurekaApp.class, args);
     }
