@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.springboot.caion</groupId>
-            <artifactId>base</artifactId>
+            <artifactId>boot-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -33,7 +33,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.springboot.bootSchedule.app.App</mainClass>
+                    <mainClass>com.springboot.bootSchedule.app.ScheduleApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>

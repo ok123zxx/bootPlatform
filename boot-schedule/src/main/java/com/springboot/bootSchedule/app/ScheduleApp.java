@@ -11,8 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 		"com.springboot.bootSchedule",
         "com.springboot.base"})
 @EnableScheduling
-public class App {
+public class ScheduleApp {
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
+		SpringApplication.run(ScheduleApp.class, args);
 	}
 }

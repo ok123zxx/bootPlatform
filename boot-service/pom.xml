@@ -10,13 +10,13 @@
 
 	<name>boot-service</name>
 	<groupId>com.springboot.caion</groupId>
-	<artifactId>myapp</artifactId>
+	<artifactId>boot-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.springboot.caion</groupId>
-			<artifactId>base</artifactId>
+			<artifactId>boot-base</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
