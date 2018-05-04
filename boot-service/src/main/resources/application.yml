@@ -9,6 +9,7 @@ spring:
   thymeleaf:
     cache: false
 
+
   redis:
     database: 0
     host: 127.0.0.1
@@ -19,12 +20,21 @@ spring:
       max-active: 8
       max-wait: -1
     timeout: 1000
+
+  application:
+    name: boot-service
+
+
 #    password:
 
 
 #服务器相关
 server:
   port: 80
+
+#注册中心
+
+
 
 #日志相关
 logging:
