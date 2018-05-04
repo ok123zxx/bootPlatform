@@ -49,6 +49,11 @@ public class SpringBootController {
         return Underline2Camel.underline2Camel(str,small);
 	}
 
+	@RequestMapping("/echo")
+	public String echo(String name){
+		return "echo "+name;
+	}
+
 	@RequestMapping(value = "/getName")
 	public String getName() {
 		return bootService.getName();

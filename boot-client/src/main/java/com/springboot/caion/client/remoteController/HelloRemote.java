@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name= "boot-service")
 public interface HelloRemote {
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/base/echo")
     String hello(@RequestParam(value = "name") String name);
 }

@@ -20,11 +20,12 @@ public class BootClientTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-//    @Autowired
-//    HelloRemote helloRemote;
-//
-//    @Test
-//    public void test() throws Exception{
-//        System.out.println(321);
-//    }
+    @Autowired
+    HelloRemote helloRemote;
+
+    @Test
+    public void test() throws Exception{
+        System.out.println(helloRemote);
+//        System.out.println(helloRemote.hello("312"));
+    }
 }
