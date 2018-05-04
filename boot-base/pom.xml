@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>base</name>
+    <name>boot-base</name>
     <groupId>com.springboot.caion</groupId>
     <artifactId>base</artifactId>
     <version>1.0-SNAPSHOT</version>

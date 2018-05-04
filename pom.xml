@@ -15,10 +15,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>base</module>
-        <module>myApp</module>
+        <module>boot-base</module>
+        <module>boot-service</module>
         <module>boot-schedule</module>
-        <module>eureka-app</module>
+        <module>cloud-eureka-app</module>
+        <module>boot-client</module>
         <!--<module>boot-redis</module>-->
     </modules>
 

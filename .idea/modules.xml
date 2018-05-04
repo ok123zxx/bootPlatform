@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/boot-base/boot-base.iml" filepath="$PROJECT_DIR$/boot-base/boot-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/boot-client/boot-client.iml" filepath="$PROJECT_DIR$/boot-client/boot-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/boot-redis/boot-redis.iml" filepath="$PROJECT_DIR$/boot-redis/boot-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/boot-schedule/boot-schedule.iml" filepath="$PROJECT_DIR$/boot-schedule/boot-schedule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/boot-service/boot-service.iml" filepath="$PROJECT_DIR$/boot-service/boot-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/bootPlatform.iml" filepath="$PROJECT_DIR$/bootPlatform.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eureka-app/eureka-app.iml" filepath="$PROJECT_DIR$/eureka-app/eureka-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myApp/myapp.iml" filepath="$PROJECT_DIR$/myApp/myapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-eureka-app/cloud-eureka-app.iml" filepath="$PROJECT_DIR$/cloud-eureka-app/cloud-eureka-app.iml" />
     </modules>
   </component>
 </project>
