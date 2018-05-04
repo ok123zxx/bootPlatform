@@ -1,3 +1,4 @@
+#########这个是开发配置
 spring:
   application:
     name: spring-cloud-caion-eureka
@@ -11,3 +12,57 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:${server.port}/eureka/
+
+#下面是服务器版的多服务配置
+---
+spring:
+  profiles: peer1
+  application:
+    name: spring-cloud-caion-eureka
+
+server:
+  port: 8001
+
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer2:${server.port}/eureka/,http://peer3:${server.port}/eureka/
+
+---
+spring:
+  profiles: peer2
+  application:
+    name: spring-cloud-caion-eureka
+
+server:
+  port: 8002
+
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:${server.port}/eureka/,http://peer3:${server.port}/eureka/
+---
+spring:
+  profiles: peer3
+  application:
+    name: spring-cloud-caion-eureka
+
+server:
+  port: 8003
+
+eureka:
+  instance:
+    hostname: peer3
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:${server.port}/eureka/,http://peer2:${server.port}/eureka/
