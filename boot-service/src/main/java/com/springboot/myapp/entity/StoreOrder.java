@@ -7,7 +7,16 @@ package com.springboot.myapp.entity;
  */
 public class StoreOrder extends BaseEntity{
 
+    private String storeId;
     private String custName;
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
 
     public String getCustName() {
         return custName;

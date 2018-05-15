@@ -57,9 +57,10 @@ public class StoreService extends CrudService{
 	 * 创建订单
 	 */
 	@Transactional
-	public StoreOrder createStoreOrder(String custName){
+	public StoreOrder createStoreOrder(String storeId,String custName){
 		StoreOrder storeOrder = new StoreOrder();
 		storeOrder.setId(IdGen.uuid());
+		storeOrder.setStoreId(storeId);
 		storeOrder.setCustName(custName);
 		storeOrder.setCreateDate(new Date());
 		storeOrder.setUpdateDate(new Date());
@@ -67,4 +68,20 @@ public class StoreService extends CrudService{
 		return storeOrder;
 	}
 
+	/*
+	 * 下单过程
+	 */
+	@Transactional
+	public void consume(String storeId,String custName,Long num){
+		//扣减库存
+		subtractStore(storeId,num);
+//		subtractStoreWithLock(storeId,num);
+
+		//生成订单
+		createStoreOrder(storeId,custName);
+		
+		//TODO [zengjian]
+		//关于事务的几个问题
+		// 如果像这种默认的事务注解，当订单生成异常时，扣减库存会不会回滚
+	}
 }
