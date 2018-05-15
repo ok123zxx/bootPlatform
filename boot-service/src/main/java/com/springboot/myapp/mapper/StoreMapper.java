@@ -14,6 +14,10 @@ public interface StoreMapper {
     int insert(Store store);
 
     @Update("update store set num = #{num},lock_version = lock_version + 1 where id = #{id} and lock_version = #{lockVersion}")
-    int updateStoreNum(String id,Long num,Long lockVersion);
+    int updateStoreNumWithLock(String id, Long num, Long lockVersion);
+
+    @Update("update store set num = #{num} where id = #{id}")
+    int updateStoreNum(String id, Long num);
+
 
 }

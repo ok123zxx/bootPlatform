@@ -3,7 +3,6 @@ package com.springboot.myapp.service;
 import com.springboot.base.utils.IdGen;
 import com.springboot.myapp.entity.Store;
 import com.springboot.myapp.entity.StoreOrder;
-import com.springboot.myapp.exception.BaseException;
 import com.springboot.myapp.mapper.StoreMapper;
 import com.springboot.myapp.mapper.StoreOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Service
 public class StoreService extends CrudService{
@@ -38,13 +36,22 @@ public class StoreService extends CrudService{
 	}
 
 	/*
-	 * 更新库存
+	 * 更新库存-带乐观锁
 	 */
 	@Transactional
-	public void subtractStore(String id,Long num){
+	public void subtractStoreWithLock(String id, Long num){
 		Store store = storeMapper.getById(id);
 		Long lockVersion = store.getLockVersion();
-		validSave(storeMapper.updateStoreNum(id,num,lockVersion),"并发更新库存失败");
+		validSave(storeMapper.updateStoreNumWithLock(id,num,lockVersion),"更新库存失败");
+	}
+
+	/*
+	 * 更新库存-不加锁
+	 */
+	@Transactional
+	public void subtractStore(String id, Long num){
+		Store store = storeMapper.getById(id);
+		validSave(storeMapper.updateStoreNum(id,num),"更新库存失败");
 	}
 
 	/*
