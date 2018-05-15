@@ -50,7 +50,6 @@ public class StoreService extends CrudService{
 	 */
 	@Transactional
 	public void subtractStore(String id, Long num){
-		Store store = storeMapper.getById(id);
 		validSave(storeMapper.updateStoreNum(id,num),"更新库存失败");
 	}
 
