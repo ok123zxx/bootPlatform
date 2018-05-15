@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.FutureTask;
+
 /*
  * springBoot测试
  */
@@ -27,5 +29,16 @@ public class BootClientTest {
     public void test() throws Exception{
         System.out.println(helloRemote);
 //        System.out.println(helloRemote.hello("312"));
+
+
+        FutureTask s = new FutureTask(() -> {
+            return null;
+        });
+        Thread a = new Thread(s);
+        a.start();
+
+
+
     }
+
 }

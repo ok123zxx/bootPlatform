@@ -3,6 +3,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://peer1:8000/eureka/
+    healthcheck:
+      enabled: true
 
 #spring相关
 spring:
@@ -37,6 +39,19 @@ spring:
 #服务器相关
 server:
   port: 8080
+
+#健康检查
+management:
+  port: 54001
+  health:
+    mail:
+      enabled: false
+info:
+  app:
+      name: "@project.name@" #从pom.xml中获取
+      description: "@project.description@"
+      version: "@project.version@"
+      spring-boot-version: "@project.parent.version@"
 
 #日志相关
 logging:

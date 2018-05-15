@@ -1,34 +1,26 @@
 package com.springboot.myapp.entity;
 
-public class Store {
+/*
+ * 库存表
+ */
+public class Store extends BaseEntity{
 
-	private String id;
-	
-	private String keyT;
-	
-	private String val;
+	private Long num;
+	private Long lockVersion;
 
-	public String getId() {
-		return id;
+	public Long getNum() {
+		return num;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNum(Long num) {
+		this.num = num;
 	}
 
-	public String getKeyT() {
-		return keyT;
+	public Long getLockVersion() {
+		return lockVersion;
 	}
 
-	public void setKeyT(String keyT) {
-		this.keyT = keyT;
-	}
-
-	public String getVal() {
-		return val;
-	}
-
-	public void setVal(String val) {
-		this.val = val;
+	public void setLockVersion(Long lockVersion) {
+		this.lockVersion = lockVersion;
 	}
 }
