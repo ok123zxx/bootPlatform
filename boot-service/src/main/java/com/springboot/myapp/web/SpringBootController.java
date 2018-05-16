@@ -4,7 +4,6 @@ import com.springboot.base.utils.JedisUtils;
 import com.springboot.base.utils.Underline2Camel;
 import com.springboot.myapp.exception.BaseException;
 import com.springboot.myapp.service.SpringBootService;
-import com.springboot.myapp.service.StoreService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +22,6 @@ public class SpringBootController {
 
 	@Autowired
 	private SpringBootService bootService;
-
-	@Autowired
-	private StoreService storeService;
 
 	/*
 	 * 驼峰转下划线
@@ -75,12 +71,6 @@ public class SpringBootController {
 		}
 		return "fail";
 	}
-
-	@RequestMapping(value = "/createByMapper")
-	public Object createStoreByMapper(String key,String value){
-		return storeService.createByMapper(key, value);
-	}
-
 
 	@RequestMapping(value = "/upload")
 	public Object updateFile(HttpServletRequest request){

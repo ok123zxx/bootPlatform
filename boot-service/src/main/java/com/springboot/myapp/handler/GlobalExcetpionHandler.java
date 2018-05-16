@@ -18,7 +18,7 @@ public class GlobalExcetpionHandler {
 	@ExceptionHandler(RuntimeException.class)//运行时异常
 	public Object runTimeexceptionHandler(RuntimeException e) {
 		LogUtils.errorPrint("",e);
-		return "runTime error handler";
+		return "runTime error";
 	}
 
 	@ResponseBody

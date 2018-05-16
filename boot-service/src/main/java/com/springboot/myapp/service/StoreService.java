@@ -3,6 +3,8 @@ package com.springboot.myapp.service;
 import com.springboot.base.utils.IdGen;
 import com.springboot.myapp.entity.Store;
 import com.springboot.myapp.entity.StoreOrder;
+import com.springboot.myapp.exception.BusException;
+import com.springboot.myapp.exception.ErrorEnum;
 import com.springboot.myapp.mapper.StoreMapper;
 import com.springboot.myapp.mapper.StoreOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,13 @@ public class StoreService extends CrudService{
 	 */
 	@Transactional
 	public void subtractStore(String id, Long num){
-		validSave(storeMapper.updateStoreNum(id,num),"更新库存失败");
+		Store store = storeMapper.getById(id);
+		Long oldNum = store.getNum();
+		Long newNum = oldNum - num;
+		if(newNum < 0)
+			throw new BusException(ErrorEnum.SALEOUT);
+
+		validSave(storeMapper.updateStoreNum(id,newNum),"更新库存失败");
 	}
 
 	/*

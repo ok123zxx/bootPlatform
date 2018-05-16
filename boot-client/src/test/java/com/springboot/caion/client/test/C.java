@@ -9,11 +9,13 @@ import com.google.common.util.concurrent.RateLimiter;
 public class C {
 
     public static void main(String[] args) {
+        new C().print(32);
+        new C().print(new Double(32));
 
-        RateLimiter limiter = RateLimiter.create(1);
-        while(true){
-            System.out.println(limiter.acquire(2));
-        }
+//        RateLimiter limiter = RateLimiter.create(1);
+//        while(true){
+//            System.out.println(limiter.acquire(2));
+//        }
     }
 
     void print(Double d){
