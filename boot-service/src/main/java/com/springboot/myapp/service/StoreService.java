@@ -52,13 +52,7 @@ public class StoreService extends CrudService{
 	 */
 	@Transactional
 	public void subtractStore(String id, Long num){
-		Store store = storeMapper.getById(id);
-		Long oldNum = store.getNum();
-		Long newNum = oldNum - num;
-		if(newNum < 0)
-			throw new BusException(ErrorEnum.SALEOUT);
-
-		validSave(storeMapper.updateStoreNum(id,newNum),"更新库存失败");
+		validSave(storeMapper.updateStoreNum(id,num),"更新库存失败");
 	}
 
 	/*
@@ -77,12 +71,27 @@ public class StoreService extends CrudService{
 	}
 
 	/*
+	 * 库存校验
+	 */
+	public Long checkStore(String storeId,Long num){
+		Store store = storeMapper.getById(storeId);
+		Long oldNum = store.getNum();
+		Long newNum = oldNum - num;
+		if(newNum < 0)
+			throw new BusException(ErrorEnum.SALEOUT);
+		return newNum;
+	}
+
+	/*
 	 * 下单过程
 	 */
 	@Transactional
 	public void consume(String storeId,String custName,Long num){
+		//库存校验
+		Long remainNum = checkStore(storeId, num);
+
 		//扣减库存
-		subtractStore(storeId,num);
+		subtractStore(storeId,remainNum);
 //		subtractStoreWithLock(storeId,num);
 
 		//生成订单
