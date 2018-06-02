@@ -6,37 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="base" />
         <module name="boot-base" />
         <module name="boot-client" />
-        <module name="boot-redis" />
         <module name="boot-schedule" />
-        <module name="boot-server" />
         <module name="boot-service" />
-        <module name="bootclient" />
         <module name="cloud-eureka-app" />
-        <module name="euraka" />
-        <module name="eureka" />
-        <module name="eureka-app" />
-        <module name="myapp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="base" target="1.8" />
-      <module name="boot-base" target="1.8" />
-      <module name="boot-client" target="1.8" />
-      <module name="boot-platform" target="1.8" />
-      <module name="boot-redis" target="1.8" />
-      <module name="boot-schedule" target="1.8" />
-      <module name="boot-server" target="1.8" />
-      <module name="boot-service" target="1.8" />
-      <module name="bootclient" target="1.8" />
-      <module name="bootPlatform" target="1.8" />
-      <module name="cloud-eureka-app" target="1.8" />
-      <module name="euraka" target="1.8" />
-      <module name="eureka" target="1.8" />
-      <module name="eureka-app" target="1.8" />
-      <module name="myapp" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

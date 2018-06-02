@@ -1,10 +1,11 @@
 #########这个是开发配置
 spring:
+  profiles: dev
   application:
     name: spring-cloud-caion-eureka
 
 server:
-  port: 8000
+  port: 8001
 
 eureka:
   instance:
