@@ -5,5 +5,7 @@ package com.springboot.caion.client.test;
  * <br>
  */
 public interface SSA {
+
+
     String a = "32";
 }

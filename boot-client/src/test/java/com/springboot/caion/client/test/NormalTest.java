@@ -17,13 +17,15 @@ public class NormalTest {
     final static String[] str = new String[1];
     static ExecutorService executorService = Executors.newSingleThreadExecutor();
     public static void main(String[] args) throws  Exception {
-        System.out.println(fun0(4));
-        System.out.println(fun0(0));
-        System.out.println(fun0(-3));
-        System.out.println(fun0(-2));
-
+//        System.out.println(fun0(4));
+//        System.out.println(fun0(0));
+//        System.out.println(fun0(-3));
+//        System.out.println(fun0(-2));
     }
 
+    public void fff(){
+
+    }
     static int fun0(int i){
         try{
             return ((Ex1)fun1(i)).mul(5);

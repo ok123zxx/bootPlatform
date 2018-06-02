@@ -15,7 +15,7 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
-#下面是服务器版的多服务配置
+#下面是服务器版的多服务配置 peer1、peer2、peer3
 ---
 spring:
   profiles: peer1
