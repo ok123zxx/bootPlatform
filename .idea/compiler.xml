@@ -13,5 +13,13 @@
         <module name="cloud-eureka-app" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="boot-base" target="1.8" />
+      <module name="boot-client" target="1.8" />
+      <module name="boot-platform" target="1.8" />
+      <module name="boot-schedule" target="1.8" />
+      <module name="boot-service" target="1.8" />
+      <module name="cloud-eureka-app" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

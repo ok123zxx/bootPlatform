@@ -3,6 +3,7 @@ package com.springboot.myapp.web;
 import com.springboot.base.utils.JedisUtils;
 import com.springboot.base.utils.Underline2Camel;
 import com.springboot.myapp.exception.BaseException;
+import com.springboot.myapp.service.PaChongService;
 import com.springboot.myapp.service.SpringBootService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class SpringBootController {
 
 	@Autowired
 	private SpringBootService bootService;
+
+	@Autowired
+	private PaChongService paChongService;
+
+	@RequestMapping("/down")
+	public Object down(){
+		paChongService.run();
+		return "success";
+	}
 
 	/*
 	 * 驼峰转下划线

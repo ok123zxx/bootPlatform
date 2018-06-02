@@ -1,6 +1,6 @@
 #########这个是开发配置
 spring:
-  profiles: dev
+  profiles: default
   application:
     name: spring-cloud-caion-eureka
 

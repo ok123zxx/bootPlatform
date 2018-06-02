@@ -36,7 +36,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //@EnableAsync//开启异步
 
 @EnableAutoConfiguration
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class ServiceApp {
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceApp.class, args);
