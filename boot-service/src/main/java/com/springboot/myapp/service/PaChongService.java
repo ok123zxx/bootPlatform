@@ -72,14 +72,17 @@ public class PaChongService {
             AtomicInteger videoIndex = new AtomicInteger();
             String url = "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
             String response = HttpUtil.sendGet(url, null);
-            LogUtils.warnPrint(String.format("startNum[%d],返回值：[%s]",startNum,response));
+            LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
+
+            FileUtils.writeToFile("/home/files/raw/"+startNum+".xml",response,false);
+
             List<String> videoUrls = getVideoUrls(response);
             if(CollectionUtils.isEmpty(videoUrls)){
                 break;
             }
             videoUrls.stream().forEach(videoUrl->{
                 videoIndex.getAndDecrement();
-                String filePath = "/data/files/"+videoIndex.toString()+".mp4";
+                String filePath = "/home/files/"+videoIndex.toString()+".mp4";
                 LogUtils.warnPrint("开始下载文件："+filePath);
                 HttpDownload.download(videoUrl,filePath);
             });
