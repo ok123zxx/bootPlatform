@@ -71,7 +71,7 @@ public class PaChongService {
             String response = HttpUtil.sendGet(url, null);
             LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
 
-            FileUtils.writeToFile("/home/files/raw/"+startNum+".xml",response,false);
+//            FileUtils.writeToFile("/home/files/raw/"+name+"/"+startNum+".xml",response,false);
 
             List<String> videoUrls = getVideoUrls(response);
             if(CollectionUtils.isEmpty(videoUrls)){
