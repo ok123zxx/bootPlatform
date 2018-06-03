@@ -28,7 +28,7 @@ public class SpringBootController {
 	private PaChongService paChongService;
 
 	@RequestMapping("/down")
-	public Object down(){
+	public Object down() throws Exception{
 		paChongService.run();
 		return "success";
 	}
