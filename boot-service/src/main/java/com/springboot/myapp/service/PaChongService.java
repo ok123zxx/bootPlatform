@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,7 +32,6 @@ public class PaChongService {
     private String targetPage = "";
     private boolean stop = false;
 
-    private DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     private String regex = "src=\"(.+?)\"";
     private Pattern pattern = Pattern.compile(regex);
 
@@ -59,7 +60,7 @@ public class PaChongService {
         return videoDom.toString();
     }
 
-    public void run(){
+    public void run() throws Exception{
         LogUtils.warnPrint("开始下载--------");
         int page = 0;
         int maxPage = 0;
@@ -97,7 +98,8 @@ public class PaChongService {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
 //            Document document = db.parse(new File(response));
-            Document document = db.parse(response);
+            InputSource inputSource = new InputSource(new ByteArrayInputStream(response.getBytes("utf-8")));
+            Document document = db.parse(inputSource);
             NodeList videoPlayer = document.getElementsByTagName("video-player");
             int length = videoPlayer.getLength();
             if(length == 0)
