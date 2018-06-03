@@ -63,11 +63,10 @@ public class PaChongService {
     public void run() throws Exception{
         LogUtils.warnPrint("开始下载--------");
         int page = 0;
-        int maxPage = 0;
         int pageSize = 50;
         String name = "fuckxiaoyuan99";
-        int startNum = getStartNum(page,pageSize);
         while(true){
+            int startNum = getStartNum(page,pageSize);
             AtomicInteger videoIndex = new AtomicInteger();
             String url = "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
             String response = HttpUtil.sendGet(url, null);
@@ -80,11 +79,12 @@ public class PaChongService {
                 break;
             }
             videoUrls.stream().forEach(videoUrl->{
-                videoIndex.getAndDecrement();
+                videoIndex.getAndIncrement();
                 String filePath = "/home/files/"+videoIndex.toString()+".mp4";
                 LogUtils.warnPrint("开始下载文件："+filePath);
                 HttpDownload.download(videoUrl,filePath);
             });
+            page++;
         }
     }
 
