@@ -1,10 +1,7 @@
 package com.springboot.myapp.service;
 
 import com.google.common.collect.Sets;
-import com.springboot.base.utils.FileUtils;
-import com.springboot.base.utils.HttpDownload;
-import com.springboot.base.utils.HttpUtil;
-import com.springboot.base.utils.LogUtils;
+import com.springboot.base.utils.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
@@ -61,6 +58,9 @@ public class PaChongService {
     }
 
     public void run(String name) throws Exception{
+        if(StringUtils.isBlank(name))
+            throw new NullPointerException();
+
         LogUtils.warnPrint(String.format("开始下载--------%s", name));
         int page = 0;
         int pageSize = 50;
