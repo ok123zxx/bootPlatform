@@ -65,9 +65,9 @@ public class PaChongService {
         int page = 0;
         int pageSize = 50;
         String name = "fuckxiaoyuan99";
+        AtomicInteger videoIndex = new AtomicInteger();
         while(true){
             int startNum = getStartNum(page,pageSize);
-            AtomicInteger videoIndex = new AtomicInteger();
             String url = "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
             String response = HttpUtil.sendGet(url, null);
             LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
