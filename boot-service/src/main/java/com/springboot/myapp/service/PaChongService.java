@@ -60,11 +60,10 @@ public class PaChongService {
         return videoDom.toString();
     }
 
-    public void run() throws Exception{
-        LogUtils.warnPrint("开始下载--------");
+    public void run(String name) throws Exception{
+        LogUtils.warnPrint(String.format("开始下载--------%s", name));
         int page = 0;
         int pageSize = 50;
-        String name = "fuckxiaoyuan99";
         AtomicInteger videoIndex = new AtomicInteger();
         while(true){
             int startNum = getStartNum(page,pageSize);
@@ -80,7 +79,7 @@ public class PaChongService {
             }
             videoUrls.stream().forEach(videoUrl->{
                 videoIndex.getAndIncrement();
-                String filePath = "/home/files/"+videoIndex.toString()+".mp4";
+                String filePath = "/home/files/"+name+"/"+videoIndex.toString()+".mp4";
                 LogUtils.warnPrint("开始下载文件："+filePath);
                 HttpDownload.download(videoUrl,filePath);
             });

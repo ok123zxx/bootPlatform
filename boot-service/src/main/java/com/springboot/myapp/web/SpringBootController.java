@@ -1,6 +1,7 @@
 package com.springboot.myapp.web;
 
 import com.springboot.base.utils.JedisUtils;
+import com.springboot.base.utils.LogUtils;
 import com.springboot.base.utils.Underline2Camel;
 import com.springboot.myapp.exception.BaseException;
 import com.springboot.myapp.service.PaChongService;
@@ -28,8 +29,8 @@ public class SpringBootController {
 	private PaChongService paChongService;
 
 	@RequestMapping("/down")
-	public Object down() throws Exception{
-		paChongService.run();
+	public Object down(String name) throws Exception{
+		paChongService.run(name);
 		return "success";
 	}
 
@@ -134,8 +135,8 @@ public class SpringBootController {
 	}
 
 	@RequestMapping(value = "/download")
-	public void downloadFile(HttpServletResponse response){
-		String fileName = "upload.jpg";
+	public void downloadFile(String fileName,HttpServletResponse response){
+		LogUtils.warnPrint("begindown:"+fileName);
 		response.setHeader("content-type", "application/octet-stream");
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
@@ -144,7 +145,7 @@ public class SpringBootController {
 		OutputStream os = null;
 		try {
 			os = response.getOutputStream();
-			bis = new BufferedInputStream(new FileInputStream(new File("d://"
+			bis = new BufferedInputStream(new FileInputStream(new File("/home/files/"
 					+ fileName)));
 			int i = bis.read(buff);
 			while (i != -1) {
@@ -153,7 +154,7 @@ public class SpringBootController {
 				i = bis.read(buff);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogUtils.errorPrint("",e);
 		} finally {
 			if (bis != null) {
 				try {
@@ -163,7 +164,7 @@ public class SpringBootController {
 				}
 			}
 		}
-		System.out.println("success");
+		LogUtils.warnPrint("downSuccess:"+fileName);
 	}
 
 
