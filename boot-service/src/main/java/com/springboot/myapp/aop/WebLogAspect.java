@@ -87,7 +87,8 @@ public class WebLogAspect {
 
     @AfterReturning(pointcut = "webLog()",returning = "ret")
     public void doAfterReturning(Object ret){
-        printLog("Response:"+ret.toString());
+        if(ret != null)
+            printLog("Response:"+ret.toString());
     }
 
     //service日志

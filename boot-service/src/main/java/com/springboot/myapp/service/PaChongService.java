@@ -26,36 +26,8 @@ import java.util.regex.Pattern;
 @Service
 public class PaChongService {
 
-    private String targetPage = "";
-    private boolean stop = false;
-
     private String regex = "src=\"(.+?)\"";
     private Pattern pattern = Pattern.compile(regex);
-
-    public void startTast(){
-        stop = false;
-    }
-
-    public void stopTask(){
-        stop = true;
-    }
-
-    public String getTargetPage(){
-
-        return targetPage;
-    }
-
-    public void setTargetPage(String str){
-        this.targetPage = str;
-    }
-
-    public String getDocument(String url){
-        return "";
-    }
-
-    public String getVideoUrl(Object videoDom){
-        return videoDom.toString();
-    }
 
     public void run(String name) throws Exception{
         if(StringUtils.isBlank(name))
@@ -67,7 +39,7 @@ public class PaChongService {
         AtomicInteger videoIndex = new AtomicInteger();
         while(true){
             int startNum = getStartNum(page,pageSize);
-            String url = "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
+            String url = getTargetUrl(name,pageSize,startNum);
             String response = HttpUtil.sendGet(url, null);
             LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
 
@@ -79,13 +51,22 @@ public class PaChongService {
             }
             videoUrls.stream().forEach(videoUrl->{
                 videoIndex.getAndIncrement();
-                String filePath = "/home/files/"+name+"/"+videoIndex.toString()+".mp4";
+                String filePath = getFileSavePath(name,videoIndex.toString());
                 LogUtils.warnPrint("开始下载文件："+filePath);
                 HttpDownload.download(videoUrl,filePath);
             });
             page++;
         }
     }
+
+    private String getTargetUrl(String name,Integer pageSize,Integer startNum){
+        return "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
+    }
+
+    private String getFileSavePath(String name,String index){
+        return "/home/files/"+name+"/"+index+".mp4";
+    }
+
 
     public int getStartNum(int page,int pageSize){
         return page*pageSize;
