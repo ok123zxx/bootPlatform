@@ -51,6 +51,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>com.springboot.myapp.app.ServiceApp</mainClass>
+					<fork>
+						true
+					</fork>
 				</configuration>
 				<executions>
 					<execution>

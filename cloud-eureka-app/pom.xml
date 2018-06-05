@@ -54,6 +54,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.springboot.caion.eureka.EurekaApp</mainClass>
+                    <fork>
+                        true
+                    </fork>
                 </configuration>
                 <executions>
                     <execution>
