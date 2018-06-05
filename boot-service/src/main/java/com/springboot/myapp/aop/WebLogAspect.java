@@ -8,6 +8,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mock.web.DelegatingServletOutputStream;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -101,6 +102,17 @@ public class WebLogAspect {
                 sb.append(headerName).append(":").append(header).append(",");
             }
             printLog(sb.substring(0,sb.length()-1));
+        }
+
+        try {
+            ServletOutputStream outputStream = response.getOutputStream();
+            DelegatingServletOutputStream delegatingServletOutputStream = (DelegatingServletOutputStream) outputStream;
+            ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) delegatingServletOutputStream.getTargetStream();
+            byte[] bytes = byteArrayOutputStream.toByteArray();
+            String str = new String(bytes);
+            printLog("CONTENT:"+str);
+        } catch (Exception e) {
+            LogUtils.errorPrint("",e);
         }
         printLog("############Response-end#################");
     }
