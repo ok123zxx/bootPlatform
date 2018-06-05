@@ -103,16 +103,18 @@ public class WebLogAspect {
             }
             printLog(sb.substring(0,sb.length()-1));
         }
-
-        try {
-            ServletOutputStream outputStream = response.getOutputStream();
-            DelegatingServletOutputStream delegatingServletOutputStream = (DelegatingServletOutputStream) outputStream;
-            ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) delegatingServletOutputStream.getTargetStream();
-            byte[] bytes = byteArrayOutputStream.toByteArray();
-            String str = new String(bytes);
-            printLog("CONTENT:"+str);
-        } catch (Exception e) {
-            LogUtils.errorPrint("",e);
+        //输出response content
+        if(TEST){
+            try {
+                ServletOutputStream outputStream = response.getOutputStream();
+                DelegatingServletOutputStream delegatingServletOutputStream = (DelegatingServletOutputStream) outputStream;
+                ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) delegatingServletOutputStream.getTargetStream();
+                byte[] bytes = byteArrayOutputStream.toByteArray();
+                String str = new String(bytes);
+                printLog("CONTENT:"+str);
+            } catch (Exception e) {
+                LogUtils.errorPrint("",e);
+            }
         }
         printLog("############Response-end#################");
     }
@@ -131,10 +133,10 @@ public class WebLogAspect {
 
     @After("webLog()")
     public void doAfterWebLog(){
-        ServletWebRequest servletContainer = (ServletWebRequest)RequestContextHolder.getRequestAttributes();
-        if(servletContainer == null)
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if(attributes == null)
             return ;
-        HttpServletResponse response = servletContainer.getResponse();
+        HttpServletResponse response = attributes.getResponse();
         if(response != null){
             printResponse(response);
         }
