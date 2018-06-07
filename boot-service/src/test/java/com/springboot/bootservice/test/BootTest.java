@@ -17,6 +17,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -31,6 +32,14 @@ public class BootTest {
     }
 
     private MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new SpringBootController()).build();
+    private ResultHandler mvcPrinter = org.springframework.test.web.servlet.result.MockMvcResultHandlers.print();
+    private ResultHandler myPrinter = mvcResult -> {
+        MockHttpServletRequest request = mvcResult.getRequest();
+        WebLogAspect.printRequest(request);
+
+        MockHttpServletResponse response = mvcResult.getResponse();
+        WebLogAspect.printResponse(response);
+    };
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -40,13 +49,8 @@ public class BootTest {
 
     @Test
     public void webTest() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.post("/base/camel2Undeline?str=myName")).andDo(mvcResult -> {
-            MockHttpServletRequest request = mvcResult.getRequest();
-            WebLogAspect.printRequest(request);
+        mockMvc.perform(MockMvcRequestBuilders.post("/base/camel2Undeline?str=myName")).andDo(mvcPrinter);
 
-            MockHttpServletResponse response = mvcResult.getResponse();
-            WebLogAspect.printResponse(response);
-        });
     }
 
     @Test
