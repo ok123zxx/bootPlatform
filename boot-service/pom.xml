@@ -50,7 +50,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.springboot.myapp.app.ServiceApp</mainClass>
+					<mainClass>com.springboot.bootservice.app.ServiceApp</mainClass>
 					<fork>
 						true
 					</fork>
