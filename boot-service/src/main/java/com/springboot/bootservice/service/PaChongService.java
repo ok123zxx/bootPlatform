@@ -64,7 +64,7 @@ public class PaChongService {
                     LogUtils.warnPrint(execute.getStatusLine().toString());
                     if (entity != null) {
                         LogUtils.warnPrint("Response content length: " + entity.getContentLength());
-                        LogUtils.warnPrint(EntityUtils.toString(entity));
+                        response = EntityUtils.toString(entity);
                         EntityUtils.consume(entity);
                     }
                 } finally {
