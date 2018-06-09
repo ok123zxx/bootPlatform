@@ -93,6 +93,10 @@ public class PaChongService {
 
     public List<String> getVideoUrls(String response){
         try {
+            if(StringUtils.isBlank(response)){
+                LogUtils.errorPrint("response is empty");
+                return null;
+            }
             Set<String> urls = Sets.newHashSet();
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
