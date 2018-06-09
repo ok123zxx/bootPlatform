@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  */
 @Service
 public class PaChongService {
-
+    private static boolean TEST = false;
     private String regex = "src=\"(.+?)\"";
     private Pattern pattern = Pattern.compile(regex);
 
@@ -80,13 +80,15 @@ public class PaChongService {
         return page*pageSize;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        //TEST = true;
         PaChongService paChongService = new PaChongService();
-        List<String> videoUrls = paChongService.getVideoUrls("G:\\my.xml");
-        System.out.println(videoUrls.size());
-        for (String videoUrl : videoUrls) {
-            System.out.println(videoUrl);
-        }
+        paChongService.run("nbwangqi");
+//        List<String> videoUrls = paChongService.getVideoUrls("G:\\my.xml");
+//        System.out.println(videoUrls.size());
+//        for (String videoUrl : videoUrls) {
+//            System.out.println(videoUrl);
+//        }
     }
 
     public List<String> getVideoUrls(String response){
@@ -94,10 +96,13 @@ public class PaChongService {
             Set<String> urls = Sets.newHashSet();
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-//            Document document = db.parse(new File(response));
-            InputSource inputSource = new InputSource(new ByteArrayInputStream(response.getBytes("utf-8")));
-            Document document = db.parse(inputSource);
-
+            Document document = null;
+            if(TEST){
+                document = db.parse(new File(response));
+            }else{
+                InputSource inputSource = new InputSource(new ByteArrayInputStream(response.getBytes("utf-8")));
+                document = db.parse(inputSource);
+            }
             NodeList post = document.getElementsByTagName("post");
             int length = post.getLength();
             if(length == 0)
@@ -136,6 +141,7 @@ public class PaChongService {
 //            }
              return Lists.newArrayList(urls);
         } catch (Exception e) {
+            LogUtils.errorPrint(response);
             LogUtils.errorPrint("获取reponse中的url错误",e);
         }
         return null;
