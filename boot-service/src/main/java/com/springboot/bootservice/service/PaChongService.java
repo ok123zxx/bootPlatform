@@ -1,8 +1,17 @@
 package com.springboot.bootservice.service;
 
 import com.google.common.collect.Sets;
-import com.springboot.base.utils.*;
+import com.springboot.base.utils.HttpDownload;
+import com.springboot.base.utils.HttpUtil;
+import com.springboot.base.utils.LogUtils;
+import com.springboot.base.utils.StringUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -14,6 +23,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -43,7 +53,31 @@ public class PaChongService {
             String url = getTargetUrl(name,pageSize,startNum);
             LogUtils.warnPrint("targetUrl:"+url);
             String response = HttpUtil.sendGet(url, null);
-            LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
+
+            if(StringUtils.isBlank(response)){
+                CloseableHttpClient httpclient = HttpClients.custom().build();
+                HttpGet httpget = new HttpGet(url);
+                CloseableHttpResponse execute = httpclient.execute(httpget);
+                try {
+                    HttpEntity entity = execute.getEntity();
+                    LogUtils.warnPrint("----------------------------------------");
+                    LogUtils.warnPrint(execute.getStatusLine().toString());
+                    if (entity != null) {
+                        LogUtils.warnPrint("Response content length: " + entity.getContentLength());
+                        LogUtils.warnPrint(EntityUtils.toString(entity));
+                        EntityUtils.consume(entity);
+                    }
+                } finally {
+                    execute.close();
+                }
+                if (httpclient != null) {
+                    try {
+                        httpclient.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
 
 //            FileUtils.writeToFile("/home/files/raw/"+name+"/"+startNum+".xml",response,false);
 
