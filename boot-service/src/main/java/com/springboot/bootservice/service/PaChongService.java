@@ -41,6 +41,7 @@ public class PaChongService {
         while(true){
             int startNum = getStartNum(page,pageSize);
             String url = getTargetUrl(name,pageSize,startNum);
+            LogUtils.warnPrint("targetUrl:"+url);
             String response = HttpUtil.sendGet(url, null);
             LogUtils.warnPrint(String.format("startNum[%d]-------",startNum));
 
