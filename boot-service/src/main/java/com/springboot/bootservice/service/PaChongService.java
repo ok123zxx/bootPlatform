@@ -107,7 +107,7 @@ public class PaChongService {
         }else if(url.indexOf(".gif") > 0){
             return "/home/files/"+name+"/gif/"+index+".gif";
         }
-        return "/home/files/"+name+"/"+index+".mp4";
+        return "/home/files/"+name+"/mp4/"+index+".mp4";
     }
 
 
