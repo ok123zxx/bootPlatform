@@ -13,6 +13,7 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -51,7 +52,7 @@ public class PaChongService {
             }
             videoUrls.stream().forEach(videoUrl->{
                 videoIndex.getAndIncrement();
-                String filePath = getFileSavePath(name,videoIndex.toString());
+                String filePath = getFileSavePath(name,videoIndex.toString(),videoUrl);
                 LogUtils.warnPrint("开始下载文件："+filePath);
                 HttpDownload.download(videoUrl,filePath);
             });
@@ -60,16 +61,32 @@ public class PaChongService {
     }
 
     private String getTargetUrl(String name,Integer pageSize,Integer startNum){
-        return "http://"+name+".tumblr.com/api/read?type=video&num="+pageSize+"&start="+startNum;
+        return "http://"+name+".tumblr.com/api/read?num="+pageSize+"&start="+startNum;
     }
 
-    private String getFileSavePath(String name,String index){
+    private String getFileSavePath(String name,String index,String url){
+        if(url.indexOf(".mp4") > 0){
+            return "/home/files/"+name+"/mp4/"+index+".mp4";
+        }else if(url.indexOf(".jpg") > 0){
+            return "/home/files/"+name+"/jpg/"+index+".jpg";
+        }else if(url.indexOf(".gif") > 0){
+            return "/home/files/"+name+"/gif/"+index+".gif";
+        }
         return "/home/files/"+name+"/"+index+".mp4";
     }
 
 
     public int getStartNum(int page,int pageSize){
         return page*pageSize;
+    }
+
+    public static void main(String[] args) {
+        PaChongService paChongService = new PaChongService();
+        List<String> videoUrls = paChongService.getVideoUrls("G:\\my.xml");
+        System.out.println(videoUrls.size());
+        for (String videoUrl : videoUrls) {
+            System.out.println(videoUrl);
+        }
     }
 
     public List<String> getVideoUrls(String response){
@@ -80,24 +97,57 @@ public class PaChongService {
 //            Document document = db.parse(new File(response));
             InputSource inputSource = new InputSource(new ByteArrayInputStream(response.getBytes("utf-8")));
             Document document = db.parse(inputSource);
-            NodeList videoPlayer = document.getElementsByTagName("video-player");
-            int length = videoPlayer.getLength();
+
+            NodeList post = document.getElementsByTagName("post");
+            int length = post.getLength();
             if(length == 0)
                 return null;
-            for (int i = 0; i < videoPlayer.getLength(); i++) {
-                Node item = videoPlayer.item(i);
-                Matcher matcher = pattern.matcher(item.getTextContent());
-                if(matcher.find()){
-                    String group = matcher.group();
-                    String substring = group.substring(5, group.length() - 1);
-                    urls.add(substring);
+            for (int i = 0; i < post.getLength(); i++) {
+                Node item = post.item(i);
+                NodeList childNodes = item.getChildNodes();
+                for (int j = 0; j < childNodes.getLength(); j++) {
+                    Node item1 = childNodes.item(j);
+                    String nodeName = item1.getNodeName();
+                    if("video-player".equals(nodeName)){
+                        getContentUrl(urls, item1);
+                        break;
+                    }else if("photo-url".equals(nodeName)){
+                        urls.add(item1.getTextContent());
+                        break;
+                    }else if("photo-url".equals(nodeName)){
+                        urls.add(item1.getTextContent());
+                        break;
+                    }
                 }
             }
-            return Lists.newArrayList(urls);
+
+//            NodeList videoPlayer = document.getElementsByTagName("video-player");
+//            int length = videoPlayer.getLength();
+//            if(length == 0)
+//                return null;
+//            for (int i = 0; i < videoPlayer.getLength(); i++) {
+//                Node item = videoPlayer.item(i);
+//                Matcher matcher = pattern.matcher(item.getTextContent());
+//                if(matcher.find()){
+//                    String group = matcher.group();
+//                    String substring = group.substring(5, group.length() - 1);
+//                    urls.add(substring);
+//                }
+//            }
+             return Lists.newArrayList(urls);
         } catch (Exception e) {
             LogUtils.errorPrint("获取reponse中的url错误",e);
         }
         return null;
+    }
+
+    private void getContentUrl(Set<String> urls, Node item) {
+        Matcher matcher = pattern.matcher(item.getTextContent());
+        if(matcher.find()){
+            String group = matcher.group();
+            String substring = group.substring(5, group.length() - 1);
+            urls.add(substring);
+        }
     }
 
 }
