@@ -1,3 +1,3 @@
 # bootPlatform
-springboot 1.5.9 
-springcloud Dalston.RC1
+* springboot 1.5.9 
+* springcloud Dalston.RC1
