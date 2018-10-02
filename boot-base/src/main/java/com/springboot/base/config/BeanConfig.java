@@ -42,13 +42,14 @@ public class BeanConfig {
      */
     @Bean //此处返回的是一个Spring的配置Bean，与xml的<bean>等价
     public JedisPool getJedisPool() {
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxIdle(maxIdle);
-        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
-        jedisPoolConfig.setMinIdle(minIdle);
-        jedisPoolConfig.setMaxTotal(maxTotal);
-        jedisPoolConfig.setTestOnCreate(true);
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout/*, password*/);
-        return jedisPool;
+//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+//        jedisPoolConfig.setMaxIdle(maxIdle);
+//        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+//        jedisPoolConfig.setMinIdle(minIdle);
+//        jedisPoolConfig.setMaxTotal(maxTotal);
+//        jedisPoolConfig.setTestOnCreate(true);
+//        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout/*, password*/);
+//        return jedisPool;
+        return null;
     }
 }

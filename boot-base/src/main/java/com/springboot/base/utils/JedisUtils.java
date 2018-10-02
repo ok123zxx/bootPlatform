@@ -23,7 +23,7 @@ public class JedisUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(JedisUtils.class);
 	
-	private static JedisPool jedisPool = SpringContextHolder.getBean(JedisPool.class);
+	private static JedisPool jedisPool = null;//SpringContextHolder.getBean(JedisPool.class);
 
 	public static final String KEY_PREFIX = "MYAPP_PREFIX_";
 	
